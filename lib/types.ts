@@ -26,8 +26,8 @@ export type Note =
 export type GuitarNeck = {
     tuning: TuningType;
     root?: Note;
-    strings: number;
-    freats: number;
+    strings?: number;
+    freats?: number;
 };
 
 export type NeckPosition = {
