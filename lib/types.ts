@@ -30,4 +30,7 @@ export type GuitarNeck = {
     freats: number;
 };
 
-export type NeckPosition = {};
+export type NeckPosition = {
+    freat: number;
+    string: number;
+};

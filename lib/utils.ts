@@ -1,5 +1,8 @@
-import { GuitarNeck } from "./types";
+import { GuitarNeck, NeckPosition } from "./types";
 
-export const guitarNeckToText = (neck: GuitarNeck): string => {
+export const guitarNeckToText = (
+    neck: GuitarNeck,
+    notes: NeckPosition[]
+): string => {
     return "";
 };

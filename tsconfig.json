@@ -18,5 +18,5 @@
         "baseUrl": ".",
         "outDir": "dist"
     },
-    "include": ["lib"]
+    "include": ["lib", "tests"]
 }
