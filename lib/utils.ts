@@ -17,6 +17,13 @@ export const guitarNeckToText = (
     neck: GuitarNeck,
     notes: NeckPosition[]
 ): string => {
+    const freats = neck.freats || 4;
+    const strings = neck.strings || 6;
+
+    if (freats <= 0 || strings <= 0) {
+        return "";
+    }
+
     return "";
 };
 
