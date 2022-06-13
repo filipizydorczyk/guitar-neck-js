@@ -1,11 +1,5 @@
 import assert from "assert";
-import {
-    getGuitarTune,
-    GuitarNeck,
-    guitarNeckToText,
-    NeckPosition,
-    readFromText,
-} from "../lib";
+import { GuitarNeck, NeckPosition, fetch, text, tuning } from "../lib";
 
 describe("Utils tests", () => {
     it("should create guitar neck in E standard", () => {
@@ -25,7 +19,7 @@ describe("Utils tests", () => {
                 string: 3,
             },
         ];
-        const response = guitarNeckToText(neck, positions);
+        const response = text(neck, positions);
 
         const strings = response.split("\n");
         assert.ok(strings.length === 6);
@@ -53,7 +47,7 @@ describe("Utils tests", () => {
                 string: 3,
             },
         ];
-        const response = guitarNeckToText(neck, positions);
+        const response = text(neck, positions);
 
         const strings = response.split("\n");
         assert.ok(strings.length === 6);
@@ -93,7 +87,7 @@ describe("Utils tests", () => {
                 string: 5,
             },
         ];
-        const response = guitarNeckToText(neck, positions);
+        const response = text(neck, positions);
 
         const strings = response.split("\n");
         assert.ok(strings.length === 6);
@@ -121,7 +115,7 @@ describe("Utils tests", () => {
                 string: 3,
             },
         ];
-        const response = guitarNeckToText(neck, positions);
+        const response = text(neck, positions);
 
         const strings = response.split("\n");
         assert.ok(strings.length === 6);
@@ -135,7 +129,7 @@ describe("Utils tests", () => {
     it("should create guitar neck with default string number", () => {
         const neck: GuitarNeck = { tuning: "open" };
         const positions: NeckPosition[] = [];
-        const response = guitarNeckToText(neck, positions);
+        const response = text(neck, positions);
 
         const strings = response.split("\n");
         assert.ok(strings.length === 6);
@@ -143,7 +137,7 @@ describe("Utils tests", () => {
     it("should create guitar neck with default freats number", () => {
         const neck: GuitarNeck = { tuning: "open" };
         const positions: NeckPosition[] = [];
-        const response = guitarNeckToText(neck, positions);
+        const response = text(neck, positions);
 
         const strings = response.split("\n");
         const stringElements = strings[0].split("|");
@@ -153,7 +147,7 @@ describe("Utils tests", () => {
     it("should create guitar neck with 7 strings", () => {
         const neck: GuitarNeck = { tuning: "open", strings: 7 };
         const positions: NeckPosition[] = [];
-        const response = guitarNeckToText(neck, positions);
+        const response = text(neck, positions);
 
         const strings = response.split("\n");
         assert.ok(strings.length === 7);
@@ -161,7 +155,7 @@ describe("Utils tests", () => {
     it("should create guitar neck with 12 freats", () => {
         const neck: GuitarNeck = { tuning: "open", freats: 12 };
         const positions: NeckPosition[] = [];
-        const response = guitarNeckToText(neck, positions);
+        const response = text(neck, positions);
 
         const strings = response.split("\n");
         const stringElements = strings[0].split("|");
@@ -177,7 +171,7 @@ describe("Utils tests", () => {
                 string: 5,
             },
         ];
-        const response = guitarNeckToText(neck, positions);
+        const response = text(neck, positions);
 
         const strings = response.split("\n");
         assert.ok(strings.length === 6);
@@ -198,7 +192,7 @@ describe("Utils tests", () => {
                 string: 5,
             },
         ];
-        const response = guitarNeckToText(neck, positions);
+        const response = text(neck, positions);
 
         assert.ok(response === "");
     });
@@ -211,7 +205,7 @@ describe("Utils tests", () => {
                 string: 5,
             },
         ];
-        const response = guitarNeckToText(neck, positions);
+        const response = text(neck, positions);
 
         assert.ok(response === "");
     });
@@ -224,7 +218,7 @@ describe("Utils tests", () => {
                 string: 5,
             },
         ];
-        const response = guitarNeckToText(neck, positions);
+        const response = text(neck, positions);
 
         assert.ok(response === "");
     });
@@ -237,7 +231,7 @@ describe("Utils tests", () => {
                 string: 5,
             },
         ];
-        const response = guitarNeckToText(neck, positions);
+        const response = text(neck, positions);
 
         assert.ok(response === "");
     });
@@ -266,7 +260,7 @@ describe("Utils tests", () => {
                 string: 5,
             },
         ];
-        const response = guitarNeckToText(neck, positions);
+        const response = text(neck, positions);
 
         const strings = response.split("\n");
         assert.ok(strings.length === 6);
@@ -286,7 +280,7 @@ describe("Utils tests", () => {
         neck += "A ||---|---|---|---|\n";
         neck += "E ||---|---|---|---|\n";
 
-        const response = readFromText(neck);
+        const response = fetch(neck);
 
         if (!response) {
             assert.ok(false);
@@ -304,7 +298,7 @@ describe("Utils tests", () => {
         neck += "A ||---|---|-o-|---|\n";
         neck += "D ||---|---|-o-|---|\n";
 
-        const response = readFromText(neck);
+        const response = fetch(neck);
 
         if (!response) {
             assert.ok(false);
@@ -322,7 +316,7 @@ describe("Utils tests", () => {
         neck += "C ||---|-o-|---|---|\n";
         neck += "E ||---|-o-|---|---|\n";
 
-        const response = readFromText(neck);
+        const response = fetch(neck);
 
         if (!response) {
             assert.ok(false);
@@ -340,7 +334,7 @@ describe("Utils tests", () => {
         neck += "A ||---|---|---|---|\n";
         neck += "E ||---|---|---|---|\n";
 
-        const response = readFromText(neck);
+        const response = fetch(neck);
 
         if (!response) {
             assert.ok(false);
@@ -357,7 +351,7 @@ describe("Utils tests", () => {
         neck += "A ||---|---|---|---|\n";
         neck += "E ||---|---|---|---|\n";
 
-        const response = readFromText(neck);
+        const response = fetch(neck);
 
         if (!response) {
             assert.ok(false);
@@ -374,7 +368,7 @@ describe("Utils tests", () => {
         neck += "A ||---|---|---|---|\n";
         neck += "E ||---|---|---|---|\n";
 
-        const response = readFromText(neck);
+        const response = fetch(neck);
 
         if (!response) {
             assert.ok(false);
@@ -393,7 +387,7 @@ describe("Utils tests", () => {
         neck += "A ||-----|----|---|-----|\n";
         neck += "E ||-----|----|---|-----|\n";
 
-        const response = readFromText(neck);
+        const response = fetch(neck);
 
         if (!response) {
             assert.ok(false);
@@ -413,7 +407,7 @@ describe("Utils tests", () => {
         E ||---|---|---|---|
         `;
 
-        const response = readFromText(neck);
+        const response = fetch(neck);
 
         if (!response) {
             assert.ok(false);
@@ -425,40 +419,40 @@ describe("Utils tests", () => {
     });
     it("should return undefined when text cant be properly fetched", () => {
         const incorrectText = "klfsdas";
-        const response = readFromText(incorrectText);
+        const response = fetch(incorrectText);
         assert.ok(response === undefined);
     });
 
     it("should 6 string E standard", () => {
-        const response = getGuitarTune({ tuning: "standard" });
+        const response = tuning({ tuning: "standard" });
 
         assert.ok(response.length === 6);
         assert.deepEqual(response, ["e", "b", "g", "d", "a", "e"]);
     });
 
     it("should 7 string B standard", () => {
-        const response = getGuitarTune({ tuning: "standard" });
+        const response = tuning({ tuning: "standard" });
 
         assert.ok(response.length === 6);
         assert.deepEqual(response, ["e", "b", "g", "d", "a", "e", "b"]);
     });
 
     it("should 4 string C open", () => {
-        const response = getGuitarTune({ tuning: "standard", strings: 4 });
+        const response = tuning({ tuning: "standard", strings: 4 });
 
         assert.ok(response.length === 4);
         assert.deepEqual(response, ["c", "g", "c", "g"]);
     });
 
     it("should 6 string D drop", () => {
-        const response = getGuitarTune({ tuning: "drop" });
+        const response = tuning({ tuning: "drop" });
 
         assert.ok(response.length === 6);
         assert.deepEqual(response, ["e", "b", "g", "d", "a", "d"]);
     });
 
     it("should 7 string cis drop", () => {
-        const response = getGuitarTune({
+        const response = tuning({
             root: "cis",
             tuning: "drop",
             strings: 7,
