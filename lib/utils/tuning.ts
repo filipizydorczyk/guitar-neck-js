@@ -24,3 +24,5 @@ export const tuning = (neck: GuitarNeck): Note[] => {
 
     return response;
 };
+
+//intervals = [4, 3] => C E G
