@@ -1,3 +1,4 @@
+import { NOTES } from "../constants";
 import { GuitarNeck, Note } from "../types";
 
 /**
@@ -11,5 +12,15 @@ import { GuitarNeck, Note } from "../types";
  * [E, B, G, D, A, E] for standard e)
  */
 export const tuning = (neck: GuitarNeck): Note[] => {
-    return [];
+    let currentIndex = 7;
+    let i = 0;
+    const response: Note[] = [];
+
+    while (response.length < 6) {
+        response.push(NOTES[currentIndex]);
+        currentIndex = (currentIndex + (i % 6 === 1 ? 8 : 7)) % NOTES.length;
+        i += 1;
+    }
+
+    return response;
 };

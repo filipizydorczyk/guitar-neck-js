@@ -423,7 +423,7 @@ describe("Utils tests", () => {
         assert.ok(response === undefined);
     });
 
-    it("should 6 string E standard", () => {
+    it.only("should 6 string E standard", () => {
         const response = tuning({ tuning: "standard" });
 
         assert.ok(response.length === 6);
