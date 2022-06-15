@@ -431,27 +431,27 @@ describe("Utils tests", () => {
     });
 
     it.only("should 7 string B standard", () => {
-        const response = tuning({ tuning: "standard" });
+        const response = tuning({ tuning: "standard", root: "b", strings: 7 });
 
-        assert.ok(response.length === 6);
+        assert.ok(response.length === 7);
         assert.deepEqual(response, ["e", "b", "g", "d", "a", "e", "b"]);
     });
 
-    it.only("should 4 string C open", () => {
-        const response = tuning({ tuning: "standard", strings: 4 });
+    it("should 4 string C open", () => {
+        const response = tuning({ tuning: "standard", root: "c", strings: 4 });
 
         assert.ok(response.length === 4);
         assert.deepEqual(response, ["c", "g", "c", "g"]);
     });
 
-    it.only("should 6 string D drop", () => {
-        const response = tuning({ tuning: "drop" });
+    it("should 6 string D drop", () => {
+        const response = tuning({ tuning: "drop", root: "d" });
 
         assert.ok(response.length === 6);
         assert.deepEqual(response, ["e", "b", "g", "d", "a", "d"]);
     });
 
-    it.only("should 7 string cis drop", () => {
+    it("should 7 string cis drop", () => {
         const response = tuning({
             root: "cis",
             tuning: "drop",

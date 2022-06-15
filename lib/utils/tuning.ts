@@ -7,7 +7,7 @@ import { GuitarNeck, Note } from "../types";
  * tuning.
  *  -   `strings` is 6 by default
  *  -   `root` by default is deteminated by `tuning`. Read
- *      more about this at {@link guitarNeckToText}
+ *      more about this at {@link text}
  * @returns array of notes ordered by guitar strings (eg.
  * [E, B, G, D, A, E] for standard e)
  */
@@ -16,7 +16,7 @@ export const tuning = (neck: GuitarNeck): Note[] => {
     let i = 0;
     const response: Note[] = [];
 
-    while (response.length < 6) {
+    while (response.length < (neck.strings || 6)) {
         response.push(NOTES[currentIndex]);
         currentIndex = (currentIndex + (i % 6 === 1 ? 8 : 7)) % NOTES.length;
         i += 1;
