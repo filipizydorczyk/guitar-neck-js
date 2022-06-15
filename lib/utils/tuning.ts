@@ -12,7 +12,7 @@ import { GuitarNeck, Note } from "../types";
  * [E, B, G, D, A, E] for standard e)
  */
 export const tuning = (neck: GuitarNeck): Note[] => {
-    let currentIndex = 7;
+    let currentIndex = NOTES.indexOf(neck.root || "e");
     let i = 0;
     const response: Note[] = [];
 
