@@ -2,7 +2,7 @@ import { deepEqual } from "assert";
 import { useStandardTuningGenerator } from "../lib/utils";
 
 describe("utils tests", () => {
-    it.only("should generate correct notes for standard tuning", () => {
+    it("should generate correct notes for standard tuning", () => {
         const notesGenerator = useStandardTuningGenerator("e");
 
         deepEqual(notesGenerator.next().value, "e");
