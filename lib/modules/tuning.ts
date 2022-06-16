@@ -1,3 +1,4 @@
+import { useStandardTuningGenerator } from "../utils";
 import { NOTES } from "../constants";
 import { GuitarNeck, Note } from "../types";
 
@@ -12,14 +13,12 @@ import { GuitarNeck, Note } from "../types";
  * [E, B, G, D, A, E] for standard e)
  */
 export const tuning = (neck: GuitarNeck): Note[] => {
-    let currentIndex = NOTES.indexOf(neck.root || "e");
-    let i = 0;
+    const notesGenerator = useStandardTuningGenerator("e");
+
     const response: Note[] = [];
 
     while (response.length < (neck.strings || 6)) {
-        response.push(NOTES[currentIndex]);
-        currentIndex = (currentIndex + (i % 6 === 1 ? 8 : 7)) % NOTES.length;
-        i += 1;
+        response.push(notesGenerator.next().value);
     }
 
     return response;
