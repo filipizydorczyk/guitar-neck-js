@@ -8,7 +8,7 @@ export const useStandardTuningGenerator = function* (root: Note) {
     while (true) {
         yield NOTES[currentIndex];
 
-        currentIndex = (currentIndex + (i % 6 === 1 ? 8 : 7)) % NOTES.length;
+        currentIndex = (currentIndex + (i % 5 === 1 ? 8 : 7)) % NOTES.length;
         i += 1;
     }
 };

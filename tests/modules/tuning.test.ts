@@ -2,21 +2,21 @@ import assert from "assert";
 import { tuning } from "../../lib";
 
 describe("Creating tunings tests", () => {
-    it.only("should 6 string E standard", () => {
+    it("should 6 string E standard", () => {
         const response = tuning({ tuning: "standard" });
 
         assert.ok(response.length === 6);
         assert.deepEqual(response, ["e", "b", "g", "d", "a", "e"]);
     });
 
-    it.only("should 7 string B standard", () => {
+    it("should 7 string B standard", () => {
         const response = tuning({ tuning: "standard", root: "b", strings: 7 });
 
         assert.ok(response.length === 7);
         assert.deepEqual(response, ["e", "b", "g", "d", "a", "e", "b"]);
     });
 
-    it.only("should 8 string G standard", () => {
+    it("should 8 string G standard", () => {
         const response = tuning({ tuning: "standard", root: "g", strings: 8 });
 
         assert.ok(response.length === 8);
