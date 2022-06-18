@@ -4,17 +4,7 @@ import { GuitarNeck, Note } from "../types";
 
 const DEFAULT_STRING_COUNT = 6;
 
-/**
- * Function to create guitar tuning
- * @param neck object that contain informations to create
- * tuning.
- *  -   `strings` is 6 by default
- *  -   `root` by default is deteminated by `tuning`. Read
- *      more about this at {@link text}
- * @returns array of notes ordered by guitar strings (eg.
- * [E, B, G, D, A, E] for standard e)
- */
-export const tuning = (neck: GuitarNeck): Note[] => {
+const baseTuning = (neck: GuitarNeck): Note[] => {
     const strings = neck.strings || DEFAULT_STRING_COUNT;
     const overStrings = strings % DEFAULT_STRING_COUNT;
 
@@ -44,4 +34,36 @@ export const tuning = (neck: GuitarNeck): Note[] => {
     return response;
 };
 
-//intervals = [4, 3] => C E G
+const openTuning = (neck: GuitarNeck): Note[] => {
+    const response: Note[] = [];
+    const strings = neck.strings || DEFAULT_STRING_COUNT;
+    const rootIndex = NOTES.indexOf(neck.root || "c");
+    const secondIndex = (rootIndex + 4) % NOTES.length;
+    const thirdIndex = (rootIndex + 7) % NOTES.length;
+
+    response.push(NOTES[secondIndex]);
+
+    [...Array(strings - 1)].map((_, index) => {
+        response.push(index % 2 == 1 ? NOTES[rootIndex] : NOTES[thirdIndex]);
+    });
+
+    return response;
+};
+
+/**
+ * Function to create guitar tuning
+ * @param neck object that contain informations to create
+ * tuning.
+ *  -   `strings` is 6 by default
+ *  -   `root` by default is deteminated by `tuning`. Read
+ *      more about this at {@link text}
+ * @returns array of notes ordered by guitar strings (eg.
+ * [E, B, G, D, A, E] for standard e)
+ */
+export const tuning = (neck: GuitarNeck): Note[] => {
+    if (neck.tuning === "open") {
+        return openTuning(neck);
+    } else {
+        return baseTuning(neck);
+    }
+};

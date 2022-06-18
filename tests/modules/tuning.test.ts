@@ -24,10 +24,10 @@ describe.only("Creating tunings tests", () => {
     });
 
     it("should 4 string C open", () => {
-        const response = tuning({ tuning: "standard", root: "c", strings: 4 });
+        const response = tuning({ tuning: "open", strings: 4 });
 
         assert.ok(response.length === 4);
-        assert.deepEqual(response, ["c", "g", "c", "g"]);
+        assert.deepEqual(response, ["e", "g", "c", "g"]);
     });
 
     it("should 6 string D drop", () => {
