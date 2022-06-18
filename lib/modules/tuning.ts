@@ -18,12 +18,13 @@ export const tuning = (neck: GuitarNeck): Note[] => {
     const strings = neck.strings || DEFAULT_STRING_COUNT;
     const overStrings = strings % DEFAULT_STRING_COUNT;
 
+    const startingPoint =
+        neck.tuning === "drop"
+            ? NOTES.indexOf(neck.root || "e") + 2
+            : NOTES.indexOf(neck.root || "e");
+
     let rootIndex =
-        (36 +
-            NOTES.indexOf(neck.root || "e") -
-            overStrings * 7 -
-            (overStrings > 1 ? 1 : 0)) %
-        12;
+        (36 + startingPoint - overStrings * 7 - (overStrings > 1 ? 1 : 0)) % 12;
 
     let root = NOTES[rootIndex];
 
@@ -32,6 +33,12 @@ export const tuning = (neck: GuitarNeck): Note[] => {
 
     while (response.length < strings) {
         response.push(notesGenerator.next().value);
+    }
+
+    if (neck.tuning === "drop") {
+        const currentRoot = response[response.length - 1];
+        const newRoot = NOTES.indexOf(currentRoot) - 2;
+        response[response.length - 1] = NOTES[newRoot];
     }
 
     return response;
