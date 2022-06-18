@@ -9,6 +9,13 @@ describe.only("Creating tunings tests", () => {
         assert.deepEqual(response, ["e", "b", "g", "d", "a", "e"]);
     });
 
+    it("should 3 string E standard", () => {
+        const response = tuning({ tuning: "standard", root: "g", strings: 3 });
+
+        assert.ok(response.length === 6);
+        assert.deepEqual(response, ["e", "b", "g"]);
+    });
+
     it("should 7 string B standard", () => {
         const response = tuning({ tuning: "standard", root: "b", strings: 7 });
 
@@ -28,6 +35,27 @@ describe.only("Creating tunings tests", () => {
 
         assert.ok(response.length === 4);
         assert.deepEqual(response, ["e", "g", "c", "g"]);
+    });
+
+    it("should 6 string D open", () => {
+        const response = tuning({ tuning: "open", root: "d" });
+
+        assert.ok(response.length === 6);
+        assert.deepEqual(response, ["fis", "a", "d", "a", "d", "a"]);
+    });
+
+    it("should 6 string A open (through octave)", () => {
+        const response = tuning({ tuning: "open", root: "a" });
+
+        assert.ok(response.length === 6);
+        assert.deepEqual(response, ["cis", "e", "a", "e", "a", "e"]);
+    });
+
+    it("should 8 string C open", () => {
+        const response = tuning({ tuning: "open", strings: 8 });
+
+        assert.ok(response.length === 8);
+        assert.deepEqual(response, ["e", "g", "c", "g", "c", "g", "c", "g"]);
     });
 
     it("should 6 string D drop", () => {
