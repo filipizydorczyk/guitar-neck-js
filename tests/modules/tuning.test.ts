@@ -65,6 +65,13 @@ describe.only("Creating tunings tests", () => {
         assert.deepEqual(response, ["e", "b", "g", "d", "a", "d"]);
     });
 
+    it("should 4 string D drop", () => {
+        const response = tuning({ tuning: "drop", root: "c", strings: 4 });
+
+        assert.ok(response.length === 6);
+        assert.deepEqual(response, ["e", "b", "g", "c"]);
+    });
+
     it("should 7 string cis drop", () => {
         const response = tuning({
             root: "cis",
