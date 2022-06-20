@@ -6,15 +6,25 @@ const DEFAULT_STRING_COUNT = 6;
 
 const baseTuning = (neck: GuitarNeck): Note[] => {
     const strings = neck.strings || DEFAULT_STRING_COUNT;
-    const overStrings = strings % DEFAULT_STRING_COUNT;
+    const overStrings =
+        strings >= DEFAULT_STRING_COUNT
+            ? strings % DEFAULT_STRING_COUNT
+            : DEFAULT_STRING_COUNT - strings;
+    const defaultRoot = neck.tuning === "drop" ? "d" : "e";
 
     const startingPoint =
         neck.tuning === "drop"
-            ? NOTES.indexOf(neck.root || "e") + 2
-            : NOTES.indexOf(neck.root || "e");
+            ? NOTES.indexOf(neck.root || defaultRoot) + 2
+            : NOTES.indexOf(neck.root || defaultRoot);
+
+    const multiplier = strings < DEFAULT_STRING_COUNT ? -1 : 1;
 
     let rootIndex =
-        (36 + startingPoint - overStrings * 7 - (overStrings > 1 ? 1 : 0)) % 12;
+        (36 +
+            startingPoint -
+            multiplier * overStrings * 7 -
+            (overStrings > 1 && multiplier === 1 ? 1 : 0)) %
+        12;
 
     let root = NOTES[rootIndex];
 

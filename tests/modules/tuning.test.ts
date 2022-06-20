@@ -9,10 +9,10 @@ describe.only("Creating tunings tests", () => {
         assert.deepEqual(response, ["e", "b", "g", "d", "a", "e"]);
     });
 
-    it("should 3 string E standard", () => {
+    it("should 3 string G standard", () => {
         const response = tuning({ tuning: "standard", root: "g", strings: 3 });
 
-        assert.ok(response.length === 6);
+        assert.ok(response.length === 3);
         assert.deepEqual(response, ["e", "b", "g"]);
     });
 
@@ -59,16 +59,16 @@ describe.only("Creating tunings tests", () => {
     });
 
     it("should 6 string D drop", () => {
-        const response = tuning({ tuning: "drop", root: "d" });
+        const response = tuning({ tuning: "drop" });
 
         assert.ok(response.length === 6);
         assert.deepEqual(response, ["e", "b", "g", "d", "a", "d"]);
     });
 
-    it("should 4 string D drop", () => {
+    it("should 4 string C drop", () => {
         const response = tuning({ tuning: "drop", root: "c", strings: 4 });
 
-        assert.ok(response.length === 6);
+        assert.ok(response.length === 4);
         assert.deepEqual(response, ["e", "b", "g", "c"]);
     });
 
