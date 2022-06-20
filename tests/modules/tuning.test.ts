@@ -1,7 +1,7 @@
 import assert from "assert";
 import { tuning } from "../../lib";
 
-describe.only("Creating tunings tests", () => {
+describe("Creating tunings tests", () => {
     it("should 6 string E standard", () => {
         const response = tuning({ tuning: "standard" });
 
